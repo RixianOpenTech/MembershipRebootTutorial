@@ -15,6 +15,8 @@ Important things to note:
 * Ninject is not part of MembershipReboot, nor is it required.
 * WebActivatorEx is simply to facilitate Ninject on startup
 
+### NinjectWebCommon
+
 Now, RouteConfig.cs and FilterConfig.cs seem to be unchanged so we don't need to look at them. Opening NinjectWebCommon.cs we see a bunch of code that is specific to Ninject and can ignore. What is immediatly important is the last function, RegisterServices:
 
 ```csharp
@@ -32,6 +34,8 @@ private static void RegisterServices(IKernel kernel)
 } 
 ```
 For now let's ignore the database initializer and look at MembershipReboot. Right after the database initializer we see a line that call into another custom class `MembershipRebootConfig` which is supposed to create in instance of the `MembershipRebootConfiguration` class. Be careful of the naming similarities. 
+
+### MembershipRebootConfig
 
 The class we are interested in looks like this:
 ```csharp
@@ -80,6 +84,8 @@ Notice that if you follow the reference we find that `MemebershipRebootConfigura
 * Pass an instance of `SecuritySettings` to the constructor
 * Do one of the previous three options and make changes in code after creation
 
+### Back to NinjectWebCommon
+
 So jumping back to the code, the next commented-out line seems to make changes to the configuration by overiding what was defined in the config file:
 ```csharp
 //config.RequireAccountVerification = false;
@@ -111,4 +117,14 @@ Now we jump back up to the `NinjectWebCommon.cs` file. Once the configuration ha
 `kernel.Bind<MembershipRebootConfiguration>().ToConstant(config);` says that when someone requests an instance of `MembershipRebootConfiguration` we are going to return the constant value `config`.
 
 All of the versions that return `.ToSelf();` will simply return an instance of that class, and `.To<TSomething>();` defines a concrete type to use.
- 
+
+All of the versions that return `.InRequestScope()` are single instances per http request. From the Ninject wiki:
+> For web applications you can use  `InRequestScope()` to have Ninject create a single instance for each request handled by your application. For  `InRequestScope()` bound instances, Ninject will use `HttpContext.Current` in case of HTTP applications...
+
+This means that we will get a new instance for every request that hits out controllers. So now notice that there are no direct references to the Start method in the `NinjectWebCommon.cs` file. The first two lines of the file use `WebActivatorEx` to call into the `NinjectWebCommon` class:
+```csharp
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BrockAllen.MembershipReboot.Mvc.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(BrockAllen.MembershipReboot.Mvc.App_Start.NinjectWebCommon), "Stop")]
+```
+
+So now that everything has been set up, let's look at the rest of the application. Let's take a break and start setting up a sample project. Until next time.
