@@ -3,7 +3,7 @@ And we're back! So last time we looked at some of the basic configuration for Me
 
 I started by creating an empty solution with a class library like so:
 
-![alt text](Images/ProjectSetup-InitialSolution.png "Initial Solution Explorer")
+![alt text](Images/ProjectSetup-InitialSolution.PNG "Initial Solution Explorer")
 
 Then I added the MembershipReboot NuGet packages by running the following commands:
 ```
@@ -77,7 +77,7 @@ public void DeleteAccount()
 
 Now that we have the code, it's time to test it out. I created a unit test project that references the main Membership project. But there is a gotcha: You also need to add the EntityFramework NuGet package to the unit test project, otherwise you will get some referencing errors:
 
-![alt text](Images/ProjectSetup-SolutionWithUnitTests.png "Added Unit Test Project")
+![alt text](Images/ProjectSetup-SolutionWithUnitTests.PNG "Added Unit Test Project")
 
 
 ```
@@ -149,7 +149,7 @@ public class MembershipTests
 
 Just a quick note: I used `try/finally` because in order to make the tests repeatable we need to remove the account we just created, even if there was an exception. Maybe not the best way of doing things, but that's what we have for now. Run these tests and you should get a new database called `MembershipReboot` in your localdb at `(localdb)\\ProjectsV12`. If you set breakpoints after the calls to create, you will see entries in the `UserAccounts` table in the database:
 
-![alt text](Images/ProjectSetup-LocalDbEntry.png "User Account Entry in LocalDB")
+![alt text](Images/ProjectSetup-LocalDbEntry.PNG "User Account Entry in LocalDB")
 
 For a final overview of the code see [here](../Source/MRTutorial-ProjectSetup)
 
