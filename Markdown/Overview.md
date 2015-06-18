@@ -4,9 +4,11 @@ Ok, so I have been having a lot of trouble understanding how MembershipReboot wo
 
 ## SingleTenant
 I started by looking at the SingleTenant sample project to see what useful information I can glean. The very first thing you see are several projects:
+
 ![alt text](Images/Overview-SE.png "Initial Solution Explorer")
 
 It seems that the first 4 projects are part of the MembershipReboot infrastructure and can be ignored. So looking at the WebApp project there are several places that we can start looking. First of all I opened up Nuget to see what packages are in the project:
+
 ![alt text](Images/Overview-Nuget.png "Nuget Packages") 
 
 Important things to note:
