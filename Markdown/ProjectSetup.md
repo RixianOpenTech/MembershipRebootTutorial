@@ -77,7 +77,7 @@ public void DeleteAccount()
 
 Now that we have the code, it's time to test it out. I created a unit test project that references the main Membership project. But there is a gotcha: You also need to add the EntityFramework NuGet package to the unit test project, otherwise you will get some referencing errors:
 
-![alt text](Images/ProjectSetup-ProjectSetup-SolutionWithUnitTests.png "Added Unit Test Project")
+![alt text](Images/ProjectSetup-SolutionWithUnitTests.png "Added Unit Test Project")
 
 
 ```
