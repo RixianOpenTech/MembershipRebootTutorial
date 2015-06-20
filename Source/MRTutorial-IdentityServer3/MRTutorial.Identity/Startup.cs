@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using BrockAllen.MembershipReboot;
@@ -33,6 +35,8 @@ namespace MRTutorial.Identity
                 //Schema = "someSchemaIfDesired"
             };
 
+            ConfigureClients(Clients.Get(), efConfig);
+
             var factory = new IdentityServerServiceFactory();
             factory.UserService = new Registration<IUserService>(userService); 
             factory.RegisterConfigurationServices(efConfig);
@@ -48,6 +52,22 @@ namespace MRTutorial.Identity
             };
 
             app.Map("/identity", idsrvApp => idsrvApp.UseIdentityServer(options));
+        }
+
+        public static void ConfigureClients(IEnumerable<Client> clients, EntityFrameworkServiceOptions options)
+        {
+            using (var db = new ClientConfigurationDbContext(options.ConnectionString, options.Schema))
+            {
+                if (!db.Clients.Any())
+                {
+                    foreach (var c in clients)
+                    {
+                        var e = c.ToEntity();
+                        db.Clients.Add(e);
+                    }
+                    db.SaveChanges();
+                }
+            }
         }
 
         X509Certificate2 LoadCertificate()

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRTutorial.Membership.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRTutorial.Identity", "MRTutorial.Identity\MRTutorial.Identity.csproj", "{F74B28DF-7256-4027-A7AA-17A37E2B2DEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRTutorial.Identity.Client", "MRTutorial.Identity.Client\MRTutorial.Identity.Client.csproj", "{F7440E2E-8F34-45EC-A804-3C6C8EC70DAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F74B28DF-7256-4027-A7AA-17A37E2B2DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F74B28DF-7256-4027-A7AA-17A37E2B2DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F74B28DF-7256-4027-A7AA-17A37E2B2DEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7440E2E-8F34-45EC-A804-3C6C8EC70DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7440E2E-8F34-45EC-A804-3C6C8EC70DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7440E2E-8F34-45EC-A804-3C6C8EC70DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7440E2E-8F34-45EC-A804-3C6C8EC70DAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

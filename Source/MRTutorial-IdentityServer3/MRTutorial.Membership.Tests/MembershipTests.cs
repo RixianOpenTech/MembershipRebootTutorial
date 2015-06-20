@@ -1,4 +1,5 @@
 ﻿using System;
+using BrockAllen.MembershipReboot;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MRTutorial.Membership.Tests
@@ -7,7 +8,7 @@ namespace MRTutorial.Membership.Tests
     public class MembershipTests
     {
         private const string ConnectionString =
-            @"Data Source=(localdb)\ProjectsV12;Initial Catalog=MembershipReboot;Integrated Security=True";
+            @"Data Source=(localdb)\ProjectsV12;Initial Catalog=MembershipDB;Integrated Security=True";
 
         [TestMethod]
         public void CreateDeleteAccount_Valid_Success()
@@ -41,6 +42,16 @@ namespace MRTutorial.Membership.Tests
                 membership.DeleteAccount();
                 Assert.IsNull(membership.Account);
             }
+        }
+
+
+        [TestMethod]
+        public void Test_Valid_Success()
+        {
+            Membership membership = new Membership(ConnectionString);
+            membership.Authenticate("foo", "bar");
+            var c = membership.Account.GetAllClaims();
+            int x = 6;
         }
 
         [TestMethod]
