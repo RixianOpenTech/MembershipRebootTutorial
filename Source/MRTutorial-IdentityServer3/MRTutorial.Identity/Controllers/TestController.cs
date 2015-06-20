@@ -9,8 +9,10 @@ using System.Web.Http;
 namespace MRTutorial.Identity.Controllers
 {
     [Authorize]
+    [RoutePrefix("test")]
     public class TestController : ApiController
     {
+        [HttpGet]
         public IHttpActionResult Get()
         {
             var user = User as ClaimsPrincipal;

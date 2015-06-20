@@ -33,12 +33,13 @@ namespace MRTutorial.Identity.Client.Controllers
 
             return await client.RequestClientCredentialsAsync("sampleApi");
         }
+
         private async Task<string> CallApi(string token)
         {
             var client = new HttpClient();
             client.SetBearerToken(token);
 
-            var json = await client.GetStringAsync("https://localhost:44301/identity");
+            var json = await client.GetStringAsync("https://localhost:44301/test");
             return JArray.Parse(json).ToString();
         }
     }
