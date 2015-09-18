@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using BrockAllen.MembershipReboot;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OpenIdConnect;
 using MRTutorial.IdentityServer;
 using Owin;
+using Thinktecture.IdentityServer.Core;
 using Thinktecture.IdentityServer.Core.Configuration;
 using Thinktecture.IdentityServer.Core.Models;
 using Thinktecture.IdentityServer.Core.Services;
@@ -46,7 +51,7 @@ namespace MRTutorial.IdentityServer
 
             var options = new IdentityServerOptions
             {
-                SiteName = "Embedded IdentityServer",
+                SiteName = "Chip Exchange IdentityServer",
                 SigningCertificate = LoadCertificate(),
                 Factory = factory
             };

@@ -27,10 +27,10 @@ namespace MRTutorial.Client
         {
             var client = new OAuth2Client(
                 new Uri("https://localhost:44303/identity/connect/token"),  //MRTutorial.IdentityServer
-                "client",
+                "roclient",
                 "secret");
 
-            return await client.RequestClientCredentialsAsync("sampleApi");
+            return await client.RequestResourceOwnerPasswordAsync("foo", "bar", "sampleApi");
         }
         private static async Task<string> CallApi(string token)
         {
